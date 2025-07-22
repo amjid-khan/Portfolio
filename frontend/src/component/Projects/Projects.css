@@ -134,6 +134,9 @@
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
+  #projects {
+    padding: 0px 0px;
+  }
   .section-title {
     font-size: 28px;
   }

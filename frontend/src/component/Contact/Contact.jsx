@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Contact.css";
-
+import axios from "axios";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,18 +13,27 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) return;
+  if (!formData.name || !formData.email || !formData.message) return;
 
-    // Simulate sending
-    setTimeout(() => {
+  try {
+    const response = await axios.post("http://localhost:8000/api/portfolio/message", formData);
+
+    if (response.data.success) {
       setSent(true);
       setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSent(false), 3000); // hide message after 3s
-    }, 1000); // simulate 1s delay
-  };
+
+      setTimeout(() => setSent(false), 3000);
+    } else {
+      alert("Failed to send message. Please try again later.");
+    }
+  } catch (error) {
+    console.error("Error sending message:", error);
+    alert("Something went wrong. Check console for more details.");
+  }
+};
 
   return (
     <section id="contact">
