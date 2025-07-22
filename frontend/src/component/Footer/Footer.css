@@ -1,0 +1,41 @@
+.footer {
+  padding: 40px 20px;
+  text-align: center;
+  color: #ccc;
+  font-size: 16px;
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-icons a {
+  color: cyan;
+  font-size: 22px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: white;
+  transform: scale(1.2) rotate(5deg);
+}
+
+@media (max-width: 600px) {
+  .footer {
+    font-size: 14px;
+    padding: 30px 15px;
+  }
+
+  .social-icons a {
+    font-size: 20px;
+  }
+}

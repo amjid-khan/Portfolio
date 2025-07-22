@@ -7,10 +7,10 @@ const Home = () => {
       <div className="home-wrapper">
         {/* LEFT SECTION */}
         <div className="home-content">
-          <h1>
+          <h2>
             Hi, I'm <span className="highlight">Amjid Khan</span>
-          </h1>
-          <h2>A Passionate <span className="highlight">MERN Stack Developer</span></h2>
+          </h2>
+          <h3>A Passionate <span className="highlight">MERN Stack Developer</span></h3>
           <p>
             I'm a <strong>fresher</strong> full-stack web developer with a deep interest in building responsive and efficient applications using <span className="highlight">MongoDB, Express, React, and Node.js</span>. I believe in writing clean code, learning continuously, and solving real-world problems through modern web solutions.
           </p>

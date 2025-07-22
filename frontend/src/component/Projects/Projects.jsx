@@ -3,7 +3,7 @@ import './Projects.css';
 const projectData = [
   {
     title: "Portfolio Website",
-    image: "https://images.unsplash.com/photo-1581090700227-1c726d88e4f9?auto=format&fit=crop&w=800&q=60",
+    image: "/port.jpg",
     desc: "A fully responsive personal portfolio built using React, showcasing my skills, projects, and contact details.",
   },
   {
