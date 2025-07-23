@@ -10,12 +10,14 @@ const app = express();
 
 app.use(express.json());
 
+// ✅ ADD all frontend origins here (including current Netlify site)
 const allowedOrigins = [
+    'https://glistening-toffee-8d15a8.netlify.app',
     'https://silly-selkie-ac96cf.netlify.app',
     'http://localhost:5173'
 ];
 
-// CORS headers setup manually
+// ✅ CORS middleware setup
 app.use((req, res, next) => {
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
@@ -26,18 +28,18 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-    // ✅ THIS handles preflight requests
+    // ✅ handle OPTIONS preflight
     if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);  // 👈 prevent 404 on preflight
+        return res.sendStatus(200);
     }
 
     next();
 });
 
-// API endpoints
+// ✅ Routes
 app.use("/api/portfolio", messageRouter);
 
-// DB connection and server listening
+// ✅ DB connection and server listen
 connectDb();
 
 app.listen(process.env.PORT, () => {
