@@ -18,13 +18,12 @@ const Contact = () => {
     if (!formData.name || !formData.email || !formData.message) return;
 
     try {
-      // ✅ Log the API URL before making the request
-      console.log("API URL:", import.meta.env.VITE_REACT_APP_API_URL);
 
-      const response = await axios.post(
-        "http://localhost:8000/api/portfolio/message",
-        formData
-      );
+
+    const response = await axios.post(
+  `${import.meta.env.VITE_REACT_APP_API_URL}/api/portfolio/message`,
+  formData
+);
 
       if (response.data.success) {
         setSent(true);
