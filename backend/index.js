@@ -13,12 +13,6 @@ app.use(cors())
 // apis endpoints
 app.use("/api/portfolio", messageRouter)
 
-app.get("/", (req, res) => {
-    res.send("Wellcome to backend")
-})
-app.get("/home", (req, res) => {
-    res.send("hyy")
-})
 //db connection and server listening
 connectDb()
 app.listen(process.env.PORT, () => {

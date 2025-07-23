@@ -19,7 +19,10 @@ const handleSubmit = async (e) => {
   if (!formData.name || !formData.email || !formData.message) return;
 
   try {
-    const response = await axios.post("http://localhost:8000/api/portfolio/message", formData);
+   const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/portfolio/message`,
+      formData
+    );
 
     if (response.data.success) {
       setSent(true);
