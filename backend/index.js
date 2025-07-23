@@ -7,41 +7,38 @@ import messageRouter from "./routes/messageRouter.js";
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
 
-// ✅ ADD all frontend origins here (including current Netlify site)
+// ✅ Define all allowed frontend URLs here
 const allowedOrigins = [
     'https://glistening-toffee-8d15a8.netlify.app',
     'https://silly-selkie-ac96cf.netlify.app',
     'http://localhost:5173'
 ];
 
-// ✅ CORS middleware setup
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
+// ✅ Use official cors() middleware
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow no-origin requests (like Postman, curl)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            return callback(new Error('CORS not allowed for this origin: ' + origin));
+        }
+    },
+    credentials: true
+}));
 
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-    // ✅ handle OPTIONS preflight
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-
-    next();
-});
+// ✅ Optional: Handle OPTIONS preflight for all routes
+app.options("*", cors());
 
 // ✅ Routes
 app.use("/api/portfolio", messageRouter);
 
-// ✅ DB connection and server listen
+// ✅ DB connection and server start
 connectDb();
 
 app.listen(process.env.PORT, () => {
-    console.log("Server is ready on port:", process.env.PORT);
+    console.log("✅ Server is ready on port:", process.env.PORT);
 });

@@ -12,31 +12,32 @@ const Contact = () => {
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
 
-  if (!formData.name || !formData.email || !formData.message) return;
+    try {
+      // ✅ Log the API URL before making the request
+      console.log("API URL:", import.meta.env.VITE_REACT_APP_API_URL);
 
-  try {
-const response = await axios.post(
-  `${import.meta.env.VITE_REACT_APP_API_URL}/api/portfolio/message`,
-  formData
-);
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/api/portfolio/message`,
+        formData
+      );
 
-    if (response.data.success) {
-      setSent(true);
-      setFormData({ name: "", email: "", message: "" });
-
-      setTimeout(() => setSent(false), 3000);
-    } else {
-      alert("Failed to send message. Please try again later.");
+      if (response.data.success) {
+        setSent(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 3000);
+      } else {
+        alert("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Something went wrong. Check console for more details.");
     }
-  } catch (error) {
-    console.error("Error sending message:", error);
-    alert("Something went wrong. Check console for more details.");
-  }
-};
+  };
 
   return (
     <section id="contact">
