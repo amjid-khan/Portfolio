@@ -8,7 +8,10 @@ dotenv.config()
 const app = express()
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: 'https:http://silly-selkie-ac96cf.netlify.app',
+    credentials: true,
+}));
 
 // apis endpoints
 app.use("/api/portfolio", messageRouter)
