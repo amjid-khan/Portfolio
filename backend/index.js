@@ -9,13 +9,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// ✅ Add all frontend URLs here
 const allowedOrigins = [
     "https://glistening-toffee-8d15a8.netlify.app",
     "http://localhost:5173"
 ];
 
-// ✅ Use cors package properly
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
@@ -27,10 +25,8 @@ app.use(cors({
     credentials: true
 }));
 
-// ✅ Routes
 app.use("/api/portfolio", messageRouter);
 
-// ✅ DB + server
 connectDb();
 app.listen(process.env.PORT, () => {
     console.log("Server is ready on port:", process.env.PORT);
