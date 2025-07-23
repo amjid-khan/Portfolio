@@ -1,20 +1,24 @@
 import React from 'react';
 import './Projects.css';
+
 const projectData = [
   {
-    title: "Portfolio Website",
-    image: "/port.jpg",
-    desc: "A fully responsive personal portfolio built using React, showcasing my skills, projects, and contact details.",
+    title: "Note-App",
+    image: "/note.jpg",
+    desc: "Easily add notes to remember your tasks, ideas, or reminders — simple and useful for daily productivity.",
+    link: "famous-lamington-b75ea4.netlify.app"
   },
   {
     title: "MERN Blog App",
     image: "/blog.jpg",
     desc: "A full-stack blog platform using MongoDB, Express, React, and Node.js with user authentication and CRUD features.",
+    link: "" // Add your blog link here when ready
   },
   {
     title: "Weather App",
     image: "/weather.jpg",
     desc: "A simple React-based weather application fetching real-time weather data using a public API.",
+    link: "" // Add weather app link when ready
   }
 ];
 
@@ -34,7 +38,25 @@ const Projects = () => {
               <div className="project-content">
                 <h3>{project.title}</h3>
                 <p>{project.desc}</p>
-                <a href="#" className="btn-view">View Project</a>
+                
+                {project.link ? (
+                  <a
+                    href={
+                      project.link.startsWith("http")
+                        ? project.link
+                        : `https://${project.link}`
+                    }
+                    className="btn-view"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Project
+                  </a>
+                ) : (
+                  <button className="btn-view" disabled>
+                    Coming Soon
+                  </button>
+                )}
               </div>
             </div>
           ))}
