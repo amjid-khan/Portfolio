@@ -1,23 +1,27 @@
-import express from "express"
-import cors from "cors"
-import dotenv from "dotenv"
-import connectDb from "./config/db.js"
-import messageRouter from "./routes/messageRouter.js"
-dotenv.config()
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDb from "./config/db.js";
+import messageRouter from "./routes/messageRouter.js";
 
-const app = express()
+dotenv.config();
 
-app.use(express.json())
+const app = express();
+
+app.use(express.json());
+
+// ✅ Correct CORS setup
 app.use(cors({
-    origin: 'http://silly-selkie-ac96cf.netlify.app',
+    origin: 'https://silly-selkie-ac96cf.netlify.app',
     credentials: true,
 }));
 
-// apis endpoints
-app.use("/api/portfolio", messageRouter)
+// API endpoints
+app.use("/api/portfolio", messageRouter);
 
-//db connection and server listening
-connectDb()
+// DB connection and server listening
+connectDb();
+
 app.listen(process.env.PORT, () => {
-    console.log("Server is ready on port : ", process.env.PORT)
-})
+    console.log("Server is ready on port:", process.env.PORT);
+});
