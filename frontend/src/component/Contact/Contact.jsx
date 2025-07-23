@@ -18,16 +18,15 @@ const Contact = () => {
     if (!formData.name || !formData.email || !formData.message) return;
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_REACT_APP_API_URL;
       const response = await axios.post(
-        `${apiBaseUrl}/api/portfolio/message`,
+        "http://localhost:8000/api/porfolio/message",
         formData
       );
 
       if (response.data.success) {
         setSent(true);
         setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSent(false), 3000);
+        setTimeout(() => setSent(false), 1000);
       } else {
         alert("Failed to send message. Please try again later.");
       }
