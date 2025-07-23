@@ -7,31 +7,30 @@ import messageRouter from "./routes/messageRouter.js";
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
 
-// ✅ Use cors middleware properly with origin list
+// ✅ Add all frontend URLs here
 const allowedOrigins = [
-    "http://localhost:5173",
     "https://glistening-toffee-8d15a8.netlify.app",
-    "https://silly-selkie-ac96cf.netlify.app"
+    "http://localhost:5173"
 ];
 
+// ✅ Use cors package properly
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error("Not allowed by CORS"));
+            callback(new Error("CORS not allowed from this origin"));
         }
     },
     credentials: true
 }));
 
-// ✅ Message API
+// ✅ Routes
 app.use("/api/portfolio", messageRouter);
 
-// ✅ Connect DB and start server
+// ✅ DB + server
 connectDb();
 app.listen(process.env.PORT, () => {
     console.log("Server is ready on port:", process.env.PORT);
