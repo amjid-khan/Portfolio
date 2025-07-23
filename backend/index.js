@@ -10,9 +10,20 @@ const app = express();
 
 app.use(express.json());
 
-// ✅ Correct CORS setup
+// ✅ CORS for both local and deployed frontend
+const allowedOrigins = [
+    'https://silly-selkie-ac96cf.netlify.app',
+    'http://localhost:5173'
+];
+
 app.use(cors({
-    origin: 'https://silly-selkie-ac96cf.netlify.app',
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 
