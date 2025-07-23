@@ -19,10 +19,10 @@ const handleSubmit = async (e) => {
   if (!formData.name || !formData.email || !formData.message) return;
 
   try {
-   const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/portfolio/message`,
-      formData
-    );
+  const response = await axios.post(
+  'https://portfolio-tau-weld-56.vercel.app/api/portfolio/message',
+  formData
+);
 
     if (response.data.success) {
       setSent(true);
