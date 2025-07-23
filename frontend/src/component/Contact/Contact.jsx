@@ -18,10 +18,9 @@ const Contact = () => {
     if (!formData.name || !formData.email || !formData.message) return;
 
     try {
-
-
+      const apiBaseUrl = import.meta.env.VITE_REACT_APP_API_URL;
       const response = await axios.post(
-        "http://localhost:8000/api/portfolio/message",
+        `${apiBaseUrl}/api/portfolio/message`,
         formData
       );
 
