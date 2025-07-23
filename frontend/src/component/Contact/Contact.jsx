@@ -22,7 +22,7 @@ const Contact = () => {
       console.log("API URL:", import.meta.env.VITE_REACT_APP_API_URL);
 
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/api/portfolio/message`,
+        "http://localhost:8000/api/portfolio/message",
         formData
       );
 

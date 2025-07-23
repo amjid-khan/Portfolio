@@ -30,8 +30,8 @@ app.use(cors({
 // ✅ Routes
 app.use("/api/portfolio", messageRouter);
 
-// ✅ DB connection
+// ✅ DB + server
 connectDb();
-
-// ✅ IMPORTANT: No app.listen() in Vercel
-export default app;
+app.listen(process.env.PORT, () => {
+    console.log("Server is ready on port:", process.env.PORT);
+});
