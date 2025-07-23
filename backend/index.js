@@ -13,6 +13,9 @@ app.use(cors())
 // apis endpoints
 app.use("/api/portfolio", messageRouter)
 
+app.use("/", (req, res) => {
+    res.send("Wellcome to backend")
+})
 
 //db connection and server listening
 connectDb()
