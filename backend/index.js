@@ -10,22 +10,29 @@ const app = express();
 
 app.use(express.json());
 
-// ✅ CORS for both local and deployed frontend
 const allowedOrigins = [
     'https://silly-selkie-ac96cf.netlify.app',
     'http://localhost:5173'
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-}));
+// CORS headers setup manually
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+    // ✅ THIS handles preflight requests
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);  // 👈 prevent 404 on preflight
+    }
+
+    next();
+});
 
 // API endpoints
 app.use("/api/portfolio", messageRouter);
