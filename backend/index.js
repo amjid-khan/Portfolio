@@ -11,9 +11,11 @@ app.use(express.json());
 
 // ✅ Add all frontend URLs here
 const allowedOrigins = [
-    "https://glistening-toffee-8d15a8.netlify.app",
-    "http://localhost:5173"
+    "https://glistening-toffee-8d15a8.netlify.app", // Netlify frontend
+    "http://localhost:5173",                        // Local dev
+    "https://portfolio-six-neon-vjfn1mynvv.vercel.app", // 🟡 Add this if frontend is also here
 ];
+
 
 // ✅ Use cors package properly
 app.use(cors({
