@@ -1,21 +1,40 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDb from "./config/db.js";
-import messageRouter from "./routes/messageRouter.js";
+import connectDb from "../config/db.js";
+import messageRouter from "../routes/messageRouter.js";
+import serverless from "serverless-http";
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+const allowedOrigins = [
+    "https://your-netlify-app.netlify.app", // ✅ Your actual Netlify URL
+];
+
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+    })
+);
 
 app.use("/api/portfolio", messageRouter);
 
-// Connect DB & Start Server
-connectDb();
+// Connect DB (only once, Vercel might call multiple times)
+let dbConnected = false;
+if (!dbConnected) {
+    connectDb();
+    dbConnected = true;
+}
 
-app.listen(process.env.PORT, () => {
-    console.log("Server is running on port:", process.env.PORT);
-});
+// ❌ Remove app.listen()
+// ✅ Export serverless handler
+export const handler = serverless(app);
