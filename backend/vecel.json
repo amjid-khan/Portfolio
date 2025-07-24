@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/message.js",
+      "src": "api/portfolio/message.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/portfolio/message",
-      "dest": "api/message.js"
+      "dest": "api/portfolio/message.js"
     }
   ]
 }
