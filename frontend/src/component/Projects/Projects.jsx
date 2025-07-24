@@ -9,10 +9,10 @@ const projectData = [
     link: "famous-lamington-b75ea4.netlify.app"
   },
   {
-    title: "MERN Blog App",
-    image: "/blog.jpg",
-    desc: "A full-stack blog platform using MongoDB, Express, React, and Node.js with user authentication and CRUD features.",
-    link: "" // Add your blog link here when ready
+    title: "Text-Utills",
+    image: "/text.jpg",
+    desc: "Convert text to UPPERCASE, lowercase, remove extra spaces, count words, and estimate reading time — all in one simple tool",
+    link: "grand-marzipan-c8b289.netlify.app"
   },
   {
     title: "Weather App",
