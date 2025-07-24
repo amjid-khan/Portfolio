@@ -8,9 +8,6 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-
-const cors = require('cors');
-
 app.use(cors({
     origin: 'https://lovely-longma-0200d7.netlify.app'
 }));
