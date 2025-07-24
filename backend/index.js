@@ -8,9 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'https://lovely-longma-0200d7.netlify.app'
-}));
+app.use(cors({}));
 
 app.use("/api/portfolio", messageRouter);
 

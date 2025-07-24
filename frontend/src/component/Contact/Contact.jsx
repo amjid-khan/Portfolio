@@ -12,32 +12,31 @@ const Contact = () => {
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) return;
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  if (!formData.name || !formData.email || !formData.message) return;
 
-      console.log("API Base URL:", baseUrl); // Should NOT be undefined
+  try {
+    const response = await axios.post(
+       "http://localhost:8000/api/portfolio/message",
+      formData
+    );
 
-      const response = await axios.post(
-        `${baseUrl}/api/portfolio/message`,
-        formData
-      );
-      if (response.data.success) {
-        setSent(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSent(false), 3000);
-      } else {
-        alert("Failed to send message. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      alert("Something went wrong. Check console for more details.");
+    if (response.data.success) {
+      setSent(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setSent(false), 3000);
+    } else {
+      alert("Failed to send message. Please try again later.");
     }
-  };
+  } catch (error) {
+    console.error("Error sending message:", error);
+    alert("Something went wrong. Check console for more details.");
+  }
+};
+
 
   return (
     <section id="contact">
