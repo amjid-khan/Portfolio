@@ -19,6 +19,9 @@ const Contact = () => {
 
     try {
       const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+      console.log("API Base URL:", baseUrl); // Should NOT be undefined
+
       const response = await axios.post(
         `${baseUrl}/api/portfolio/message`,
         formData
