@@ -9,12 +9,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors({
-    origin: process.env.CLIENT_URL || "*",
-    methods: ["GET", "POST"],
-    credentials: true
-}));
+const cors = require('cors');
 
+app.use(cors({
+    origin: 'https://lovely-longma-0200d7.netlify.app'
+}));
 
 app.use("/api/portfolio", messageRouter);
 
