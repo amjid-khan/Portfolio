@@ -15,11 +15,41 @@ const projectData = [
     link: "grand-marzipan-c8b289.netlify.app"
   },
   {
-    title: "Weather App",
-    image: "/weather.jpg",
-    desc: "A simple React-based weather application fetching real-time weather data using a public API.",
-    link: "" // Add weather app link when ready
-  }
+    title: "Todo-App",
+    image: "/todo.png",
+    desc: "A simple and fast ToDo app that lets you add and delete tasks with ease. Stay focused and organized without any distractions or unnecessary features.",
+    link: "stellular-zuccutto-f2c3df.netlify.app"
+  },
+  {
+    title: "Change-BG-Colors",
+    image: "/color.jpeg",
+    desc: "A simple web tool to change the background color with just one click. Make your page fun and colorful instantly! ",
+    link: "iridescent-salmiakki-f92f60.netlify.app"
+  },
+  {
+    title: "QR-Code-Generator",
+    image: "/qr.webp",
+    desc: "Instantly generate QR codes for any text or URL with this simple tool. No signup, no clutter — just fast and clean QR creation!",
+    link: "darling-lollipop-062dbe.netlify.app"
+  },
+  {
+    title: "Text-to-speak",
+    image: "/speak.png",
+    desc: "Convert written text into spoken words instantly using this simple Text-to-Speech tool. Perfect for accessibility, learning, or just having fun listening to your own words!",
+    link: "stellular-lokum-c646b8.netlify.app"
+  },
+  {
+    title: "Counter",
+    image: "/counter.webp",
+    desc: "A simple counter app to increment or decrement numbers with ease. Perfect for learning state management in React or basic JavaScript interactions!",
+    link: "sage-kashata-4db84a.netlify.app"
+  },
+  {
+    title: "Order-App",
+    image: "/order.jpg",
+    desc: "This Order App allows users to manage orders with ease. You can add new orders, update existing ones, delete them when needed, and adjust the quantity by increasing or decreasing it — all in a simple, user-friendly interface.",
+    link: "sprightly-capybara-006e0d.netlify.app"
+  },
 ];
 
 const Projects = () => {
