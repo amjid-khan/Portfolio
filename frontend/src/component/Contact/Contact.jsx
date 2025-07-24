@@ -18,10 +18,11 @@ const Contact = () => {
     if (!formData.name || !formData.email || !formData.message) return;
 
     try {
-   const response = await axios.post(
-     "http://localhost:8000/api/portfolio/message",
-  formData
-);
+      const baseUrl = process.env.REACT_APP_API_BASE_URL;
+      const response = await axios.post(
+        `${baseUrl}/api/portfolio/message`,
+        formData
+      );
       if (response.data.success) {
         setSent(true);
         setFormData({ name: "", email: "", message: "" });
