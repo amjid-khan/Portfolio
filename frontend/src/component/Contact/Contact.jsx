@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
     if (response.data.success) {
       setSent(true);
       setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSent(false), 1000);
+      setTimeout(() => setSent(false), 3000);
     } else {
       alert("Failed to send message. Please try again later.");
     }
