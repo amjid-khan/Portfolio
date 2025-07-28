@@ -8,7 +8,6 @@ const Contact = () => {
     message: "",
   });
   const [sent, setSent] = useState(false);
-  axios.defaults.withCredentials = true;
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -22,7 +21,10 @@ const Contact = () => {
     try {
       const response = await axios.post(
         "https://portfolio-lime-omega-54.vercel.app/api/portfolio/message",
-        formData
+        formData,
+        {
+          withCredentials: true,
+        }
       );
 
       if (response.data.success) {
