@@ -7,15 +7,12 @@ const handleMessage = async (req, res) => {
     const { name, email, message } = req.body;
 
     try {
-        // Save message to DB
         const response = await Messages.create({ name, email, message });
-
-        // Setup transporter using your .env values
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS.replace(/\s/g, ""), // remove spaces if any
+                pass: process.env.EMAIL_PASS.replace(/\s/g, ""),
             },
         });
 
@@ -31,10 +28,7 @@ const handleMessage = async (req, res) => {
         <p><strong>Message:</strong><br/>${message}</p>
       `,
         };
-
-        // Send email
         await transporter.sendMail(mailOptions);
-
         res.status(201).send({ success: true, msg: "Message sent and email delivered", data: response });
     } catch (error) {
         console.error("Error in handleMessage:", error);
