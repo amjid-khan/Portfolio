@@ -9,7 +9,7 @@ connectDb();
 
 const app = express();
 
-// ✅ Use correct allowed origin
+
 const allowedOrigins = [
     "https://portfolio-frontend-psi-ten.vercel.app",
     "http://localhost:3000"
@@ -27,11 +27,10 @@ app.use(cors({
     credentials: true
 }));
 
-// ✅ Handle preflight requests for all routes
+
 app.options("*", cors());
 
 app.use(express.json());
 app.use("/api/portfolio", messageRouter);
 
-// ✅ No app.listen on Vercel
 export default app;
