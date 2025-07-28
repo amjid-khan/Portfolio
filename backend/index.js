@@ -11,11 +11,17 @@ const app = express();
 
 app.use(express.json());
 
+const allowedOrigins = [
+    "http://localhost:8000",
+    "https://portfolio-frontend-psi-ten.vercel.app"
+];
+
 app.use(cors({
-    origin: "https://your-frontend.vercel.app",
+    origin: allowedOrigins,
     methods: ["POST", "GET"],
     credentials: true
 }));
+
 
 app.use("/api/portfolio", messageRouter);
 
