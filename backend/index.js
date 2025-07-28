@@ -11,7 +11,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://portfolio-frontend-jade-eight.vercel.app"],
+        methods: ["POST"],
+        Credential: true
+    }
+));
 
 app.use(cors())
 
