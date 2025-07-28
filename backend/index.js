@@ -12,15 +12,15 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "https://your-frontend.vercel.app", // ✅ Replace with real frontend URL
+    origin: "https://your-frontend.vercel.app",
     methods: ["POST", "GET"],
     credentials: true
 }));
 
 app.use("/api/portfolio", messageRouter);
 
-// ✅ Connect DB before handling requests
+//  Connect DB before handling requests
 await connectDb();
 
-// ✅ Export express app for serverless
+//  Export express app for serverless
 export default app;

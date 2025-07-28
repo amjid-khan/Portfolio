@@ -13,30 +13,29 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.email || !formData.message) return;
 
-  try {
-    const response = await axios.post(
-       "http://localhost:8000/api/portfolio/message",
-      formData
-    );
+    try {
+      const response = await axios.post(
+        "https://portfolio-amjid-khans-projects.vercel.app/api/portfolio/message",
+        formData
+      );
 
-    if (response.data.success) {
-      setSent(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSent(false), 3000);
-    } else {
-      alert("Failed to send message. Please try again later.");
+      if (response.data.success) {
+        setSent(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 3000);
+      } else {
+        alert("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Something went wrong. Check console for more details.");
     }
-  } catch (error) {
-    console.error("Error sending message:", error);
-    alert("Something went wrong. Check console for more details.");
-  }
-};
-
+  };
 
   return (
     <section id="contact">
