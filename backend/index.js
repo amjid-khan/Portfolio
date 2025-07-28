@@ -9,20 +9,8 @@ dotenv.config();
 const app = express();
 
 
-const allowedOrigin = "https://portfolio-frontend-jade-eight.vercel.app";
 
-app.use(cors({
-    origin: allowedOrigin,
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true
-}));
-
-
-app.options("*", cors({
-    origin: allowedOrigin,
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 

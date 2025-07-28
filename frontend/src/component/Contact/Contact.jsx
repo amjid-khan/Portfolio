@@ -20,11 +20,8 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "https://portfolio-lime-omega-54.vercel.app/api/portfolio/message",
+        "http://localhost:8000/api/portfolio/message",
         formData,
-        {
-          withCredentials: true,
-        }
       );
 
       if (response.data.success) {
