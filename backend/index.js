@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors(
+    {
+        orgin : "https://deploye-mern-stack-app",
+        method : ["POST" , "GET"],
+        credentials : true
+    }
+))
 
 app.use("/api/portfolio", messageRouter);
 
