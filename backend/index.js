@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDb from "./config/db.js";
 import messageRouter from "./routes/messageRouter.js";
-import serverless from "serverless-http"; // 👈 NEW
+import serverless from "serverless-http";
 
 dotenv.config();
 
@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "*",
+        origin: "http://localhost:3000, https://your-frontend.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })

@@ -20,8 +20,8 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/portfolio/message",
-        formData,
+        "https://portfolio-three-tawny-95.vercel.app/api/portfolio/message",
+        formData
       );
 
       if (response.data.success) {
