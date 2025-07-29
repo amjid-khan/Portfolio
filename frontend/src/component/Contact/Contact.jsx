@@ -27,7 +27,7 @@ const Contact = () => {
       if (response.data.success) {
         setSent(true);
         setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSent(false), 3000);
+        setTimeout(() => setSent(false), 2000);
       } else {
         alert("Failed to send message. Please try again later.");
       }
