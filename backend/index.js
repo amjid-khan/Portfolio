@@ -18,9 +18,27 @@ app.use(
 );
 
 app.use(express.json());
-
 app.use("/api/portfolio", messageRouter);
 
-connectDb();
+// Only connect DB once (recommended for serverless)
+let isConnected = false;
+const connectOnce = async () => {
+    if (!isConnected) {
+        await connectDb();
+        isConnected = true;
+    }
+};
 
-export const handler = serverless(app);
+// Export handler that Vercel uses
+export const handler = async (event, context) => {
+    try {
+        await connectOnce();
+        return await serverless(app)(event, context);
+    } catch (err) {
+        console.error("❌ Handler error:", err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: "Server error" }),
+        };
+    }
+};
