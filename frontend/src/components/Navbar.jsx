@@ -26,13 +26,11 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + 120;
-
       navLinks.forEach(({ id }) => {
         const section = document.getElementById(id);
         if (section) {
           const top = section.offsetTop;
           const height = section.offsetHeight;
-
           if (scrollPos >= top && scrollPos < top + height) {
             setActive(id);
           }
@@ -47,59 +45,57 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black border-b border-gray-800">
-        <div className="max-w-7xl mx-auto h-16 px-4 sm:px-8 lg:px-12 flex items-center">
-          
-          {/* Logo */}
-          <div className="text-white text-2xl sm:text-3xl font-bold">
-            Amjid<span className="text-sienna">.</span>
-          </div>
+      <header className="fixed top-0 left-0 w-full z-50 bg-black border-b border-gray-800 px-4 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center h-16 justify-between gap-4">
+            
+            {/* Logo */}
+            <div className="text-white text-2xl sm:text-3xl font-bold flex-shrink-0">
+              Amjid<span className="text-sienna">.</span>
+            </div>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex flex-1 justify-center">
-            <ul className="flex gap-8 lg:gap-14 text-white text-sm lg:text-base">
-              {navLinks.map(({ id, label, icon: Icon }) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className={`flex items-center gap-2 relative transition-colors duration-300
-                      ${
-                        active === id
-                          ? "text-sienna"
-                          : "hover:text-sienna"
-                      }`}
-                  >
-                    <Icon size={18} />
-                    {label}
-                    {active === id && (
-                      <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-sienna" />
-                    )}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+            {/* Desktop Menu */}
+            <nav className="hidden md:flex flex-1 justify-center mx-4">
+              <ul className="flex gap-6 lg:gap-10 text-white text-sm lg:text-base">
+                {navLinks.map(({ id, label, icon: Icon }) => (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      className={`flex items-center gap-2 relative transition-colors duration-300
+                        ${active === id ? "text-sienna" : "hover:text-sienna"}`}
+                    >
+                      <Icon size={18} />
+                      {label}
+                      {active === id && (
+                        <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-sienna" />
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-          {/* WhatsApp Button - Desktop */}
-          <div className="hidden md:flex">
-            <a
-              href="https://wa.me/03119091924"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-green-500 px-4 lg:px-6 py-1.5 lg:py-2 rounded text-white text-sm lg:text-base font-semibold hover:bg-green-600 transition"
+            {/* WhatsApp Button */}
+            <div className="hidden md:flex flex-shrink-0">
+              <a
+                href="https://wa.me/03119091924"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-green-500 px-4 lg:px-6 py-1.5 lg:py-2 rounded text-white text-sm lg:text-base font-semibold hover:bg-green-600 transition"
+              >
+                <MessageCircle size={20} />
+                WhatsApp
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white flex-shrink-0"
+              onClick={() => setMenuOpen(true)}
             >
-              <MessageCircle size={20} />
-              WhatsApp
-            </a>
+              <Menu size={28} />
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden ml-auto text-white"
-            onClick={() => setMenuOpen(true)}
-          >
-            <Menu size={28} />
-          </button>
         </div>
       </header>
 
@@ -108,24 +104,22 @@ const Navbar = () => {
         className={`fixed top-0 right-0 h-full w-64 sm:w-72 bg-black text-white z-50 transform transition-transform duration-300
         ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex justify-end p-4">
+        {/* Close Button */}
+        <div className="flex justify-end px-4 sm:px-8 lg:px-12 py-4">
           <button onClick={() => setMenuOpen(false)}>
             <X size={26} />
           </button>
         </div>
 
-        <nav className="flex flex-col gap-5 px-6 mt-6">
+        {/* Mobile Nav Links */}
+        <nav className="flex flex-col gap-5 px-4 sm:px-8 lg:px-12 mt-6">
           {navLinks.map(({ id, label, icon: Icon }) => (
             <a
               key={id}
               href={`#${id}`}
               onClick={() => setMenuOpen(false)}
               className={`flex items-center gap-3 text-lg transition
-                ${
-                  active === id
-                    ? "text-sienna"
-                    : "hover:text-sienna"
-                }`}
+                ${active === id ? "text-sienna" : "hover:text-sienna"}`}
             >
               <Icon size={22} />
               {label}

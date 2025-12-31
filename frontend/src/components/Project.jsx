@@ -92,7 +92,7 @@ const Project = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -114,8 +114,8 @@ const Project = () => {
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <p
-          className={`text-center text-3xl font-semibold mb-6 transform transition-transform duration-1000 ease-out ${
-            visible ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"
+          className={`text-center text-3xl font-semibold mb-6 transform transition-all duration-700 ${
+            visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
           <span className="text-sienna font-semibold underline">P</span>rojects
@@ -123,8 +123,8 @@ const Project = () => {
 
         {/* Paragraph */}
         <p
-          className={`text-center mb-16 text-sm sm:text-base transform transition-transform duration-1000 ease-out ${
-            visible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
+          className={`text-center mb-16 text-sm sm:text-base transform transition-all duration-700 delay-100 ${
+            visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
           I am deeply engaged in building and delivering impactful projects that
@@ -183,23 +183,25 @@ const Project = () => {
         {/* Modal */}
         {modalData && (
           <div
-            className="fixed inset-0 bg-black/70 flex justify-center items-center z-[1000] transition-opacity duration-300 ease-out"
+            className="fixed inset-0 bg-black/70 flex justify-center items-center z-[1000] px-4 py-6 sm:p-8 transition-opacity duration-300 ease-out overflow-y-auto"
             onClick={closeModal}
           >
             <div
-              className="bg-[#2c2c2c] p-6 sm:p-8 rounded-[15px] max-w-[500px] w-[90%] text-white text-center relative transform transition-transform duration-300 ease-out scale-90 opacity-0 animate-modalOpen"
+              className="bg-[#2c2c2c] p-5 sm:p-6 md:p-8 rounded-xl w-full max-w-[min(90vw,500px)] my-auto text-white relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="mb-4 text-lg sm:text-xl">{modalData.title}</h2>
-              <p className="mb-6 text-sm sm:text-base">
+              <h2 className="mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl font-semibold text-center">{modalData.title}</h2>
+              <p className="mb-5 sm:mb-6 text-sm sm:text-base leading-relaxed text-gray-300 text-left">
                 {modalData.description}
               </p>
-              <button
-                className="mt-4 px-5 py-2.5 bg-sienna text-white rounded-lg font-medium cursor-pointer"
-                onClick={closeModal}
-              >
-                Close
-              </button>
+              <div className="flex justify-center">
+                <button
+                  className="px-6 py-2.5 bg-sienna text-white rounded-lg text-sm sm:text-base font-medium cursor-pointer hover:bg-sienna/90 transition-colors"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         )}

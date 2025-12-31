@@ -63,8 +63,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="bg-black text-white border-t border-pink-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 lg:py-24">
+    <section id="home" className="bg-black text-white py-16 px-4 sm:px-8 lg:px-12 mt-4">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
           
           {/* Left Side */}
